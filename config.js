@@ -1,30 +1,18 @@
-const WEBSITE_CONFIG = {
-  // GANTI SEMUA ISI DI SINI SAJA
+const config = {
   pin: "1234",
-
-  coverTitle: "LOVELOCK",
-  coverSubtitle: "A private letter made only for you",
-
-  background: {
-    // Bisa pakai warna, gradient, atau gambar:
-    // type: "color", value: "#1e1b4b"
-    // type: "image", value: "assets/background.jpg"
-    type: "gradient",
-    value: "linear-gradient(135deg, #1f1235, #6d214f, #ff9a9e)"
-  },
-
+  background: "assets/background.jpeg",
   music: "assets/music/music.mp3",
+  typingSpeed: 45,
 
-  // Kecepatan efek ketik. Semakin kecil semakin cepat.
-  typingSpeed: 38,
+  letterTitle: "Untuk Kamu ❤️",
 
-  letterTitle: "Dear Someone Special,",
-  letterText: [
-    "Aku cuma mau bilang, terima kasih sudah hadir di hidupku.",
-    "Mungkin ini sederhana, tapi aku bikin ini dengan niat dan perasaan yang tulus.",
-    "Semoga setiap kali kamu buka halaman ini, kamu ingat kalau kamu selalu punya tempat spesial di hati seseorang."
-  ],
-  letterSign: "With love, Azka",
+  letterText: `Hai kamu...
+
+Ini surat kecil dariku.
+Semoga kamu suka ya.
+
+Aku cuma mau bilang,
+terima kasih sudah hadir.`,
 
   photos: [
     "assets/photos/foto1.jpeg",
