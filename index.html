@@ -8,17 +8,16 @@
 </head>
 <body>
 
-  <audio id="bgMusic" loop>
-    <source src="assets/music/music.mp3" type="audio/mpeg" />
-  </audio>
+  <audio id="bgMusic" loop></audio>
 
   <section class="lock-screen" id="lockScreen">
-    <div class="lock">
+    <div class="lock-wrapper">
       <div class="lock-shackle"></div>
 
       <div class="lock-body">
+        <div class="lock-icon">🔒</div>
         <h2>LOVE LOCK</h2>
-        <p>Putar PIN untuk membuka</p>
+        <p>Putar angka untuk membuka</p>
 
         <div class="pin-scroll">
           <select id="pin1"></select>
@@ -27,7 +26,7 @@
           <select id="pin4"></select>
         </div>
 
-        <button id="unlockBtn">Buka 🔓</button>
+        <button id="unlockBtn">Buka Gembok</button>
         <p id="wrongText"></p>
       </div>
     </div>
@@ -40,9 +39,13 @@
       <button id="skipBtn">Skip</button>
     </section>
 
-    <section class="photo-slider">
+    <section class="photo-box">
       <button class="slide-btn" id="prevBtn">‹</button>
-      <img id="slidePhoto" src="" alt="foto" />
+
+      <div class="photo-frame">
+        <img id="slidePhoto" src="" alt="foto" />
+      </div>
+
       <button class="slide-btn" id="nextBtn">›</button>
     </section>
   </main>
