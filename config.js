@@ -1,27 +1,42 @@
-const config = {
-  pin: "1234",
-  background: "assets/background.jpeg",
-  music: "assets/music/music.mp3",
-  typingSpeed: 45,
+// EDIT SEMUA ISI WEB DARI SINI
+// Untuk foto: taruh file gambar di folder yang sama, lalu isi seperti "foto1.jpg".
+// Bisa juga pakai emoji seperti contoh bawaan.
+const CONFIG = {
+  pin: "0001",
+  brandName: "♡ Love Lock",
+  badgeText: "♡ Love Lock",
+  mainTitle: "THE PIN IS : 0001",
+  wrongPinText: "PIN salah, coba lagi.",
+  unlockedText: "Unlocked! Buka amplopnya.",
+  envelopeTitle: "Tap the envelope",
 
-  letterTitle: "Untuk Kamu ❤️",
+  recipient: "Kamu",
+  signature: "Azka",
+  typeSpeed: 32,
+  message: `Aku bikin halaman kecil ini untuk menyimpan rasa yang kadang susah diucapkan langsung.
 
-  letterText: `Hai kamu...
+Semoga saat kamu buka surat ini, kamu senyum sebentar dan merasa dihargai. Terima kasih sudah hadir, dengan semua hal sederhana yang ternyata berarti besar.
 
-Ini surat kecil dariku.
-Semoga kamu suka ya.
+Jangan lupa, kamu selalu punya tempat spesial di cerita ini.`,
 
-Aku cuma mau bilang,
-terima kasih sudah hadir.`,
+  galleryTitle: "Photo Collage",
+  galleryDesc: "Klik foto, lalu geser pakai tombol kanan/kiri tanpa harus back.",
+  footerText: "Made with love.",
 
   photos: [
-    "assets/photos/foto1.jpeg",
-    "assets/photos/foto2.jpeg",
-    "assets/photos/foto3.jpeg",
-    "assets/photos/foto4.jpeg",
-    "assets/photos/foto5.jpeg",
-    "assets/photos/foto6.jpeg",
-    "assets/photos/foto7.jpeg",
-    "assets/photos/foto8.jpeg"
-  ]
+    { src: "photos/foto1.svg", caption: "Memory 01" },
+    { src: "photos/foto2.svg", caption: "Sweet 02" },
+    { src: "photos/foto3.svg", caption: "Love 03" },
+    { src: "photos/foto4.svg", caption: "Smile 04" },
+    { src: "photos/foto5.svg", caption: "Dream 05" },
+    { src: "photos/foto6.svg", caption: "Forever 06" },
+    { src: "photos/foto7.svg", caption: "Us 07" },
+    { src: "photos/foto8.svg", caption: "Happy 08" }
+  ],
+
+  hearts: {
+    enabled: true,
+    amount: 28,
+    symbols: ["♡", "♥", "💕", "💗"]
+  }
 };
