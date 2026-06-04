@@ -1,125 +1,186 @@
-const lockScreen = document.getElementById("lockScreen");
-const mainContent = document.getElementById("mainContent");
-const unlockBtn = document.getElementById("unlockBtn");
-const wrongText = document.getElementById("wrongText");
-
-const bgMusic = document.getElementById("bgMusic");
-
-const letterTitle = document.getElementById("letterTitle");
-const letterText = document.getElementById("letterText");
-const skipBtn = document.getElementById("skipBtn");
-
-const slidePhoto = document.getElementById("slidePhoto");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
+let digits = [0, 0, 0, 0];
 let currentPhoto = 0;
-let typingIndex = 0;
-let typingTimer;
-let isSkipped = false;
+let idx = 0;
+let timer;
 
-document.documentElement.style.setProperty(
-  "--bg-image",
-  `url('${config.background}')`
-);
+const $ = (id) => document.getElementById(id);
+const cfg = window.CONFIG || CONFIG;
 
-function fillPinScroll() {
-  const pinIds = ["pin1", "pin2", "pin3", "pin4"];
-
-  pinIds.forEach((id) => {
-    const select = document.getElementById(id);
-
-    for (let i = 0; i <= 9; i++) {
-      const option = document.createElement("option");
-      option.value = i;
-      option.textContent = i;
-      select.appendChild(option);
-    }
-  });
+function setText(id, text) {
+  const el = $(id);
+  if (el && text !== undefined) el.textContent = text;
 }
 
-function getPinValue() {
-  return (
-    document.getElementById("pin1").value +
-    document.getElementById("pin2").value +
-    document.getElementById("pin3").value +
-    document.getElementById("pin4").value
-  );
+function initContent() {
+  document.title = cfg.brandName?.replace(/[♡♥💕💗]/g, '').trim() || 'Love Lock';
+  setText('brandName', cfg.brandName);
+  setText('badgeText', cfg.badgeText);
+  setText('mainTitle', cfg.mainTitle);
+  setText('envelopeTitle', cfg.envelopeTitle);
+  setText('letterGreeting', `Dear ${cfg.recipient || 'Kamu'},`);
+  setText('signature', cfg.signature || '');
+  setText('galleryTitle', cfg.galleryTitle);
+  setText('galleryDesc', cfg.galleryDesc);
+  setText('footerText', cfg.footerText);
+  createFlyingHearts();
 }
 
-function openWebsite() {
-  lockScreen.style.display = "none";
-  mainContent.style.display = "block";
-
-  bgMusic.src = config.music;
-  bgMusic.play().catch(() => {});
-
-  startLetter();
-  showPhoto();
+function renderDials() {
+  $('dials').innerHTML = digits.map((d, i) => `
+    <div class="dial">
+      <button type="button" onclick="step(${i}, 1)">+</button>
+      <span class="digit">${d}</span>
+      <button type="button" onclick="step(${i}, -1)">-</button>
+    </div>
+  `).join('');
 }
 
-unlockBtn.addEventListener("click", () => {
-  const pin = getPinValue();
+function step(i, n) {
+  digits[i] = (digits[i] + n + 10) % 10;
+  renderDials();
+}
 
-  if (pin === config.pin) {
-    openWebsite();
+function unlockPadlock() {
+  const val = digits.join('');
+  if (val === String(cfg.pin)) {
+    $('padlock').classList.add('unlocked');
+    $('status').textContent = cfg.unlockedText || 'Unlocked!';
+    burstHearts(18);
+    setTimeout(() => {
+      $('lockStage').classList.add('hidden');
+      $('envelopeStage').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 950);
   } else {
-    wrongText.textContent = "PIN salah 😭";
+    $('padlock').classList.add('shake');
+    $('status').textContent = cfg.wrongPinText || 'PIN salah, coba lagi.';
+    setTimeout(() => $('padlock').classList.remove('shake'), 300);
   }
-});
+}
 
-function startLetter() {
-  letterTitle.textContent = config.letterTitle;
-  letterText.textContent = "";
-  typingIndex = 0;
-  isSkipped = false;
+function openEnvelope() {
+  $('envelope').classList.add('open');
+  setTimeout(openPaper, 850);
+}
 
+function openPaper() {
+  $('paperModal').classList.remove('hidden');
+  $('date').textContent = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  $('typed').textContent = '';
+  idx = 0;
+  $('skip').classList.remove('hidden');
+  $('next').classList.add('hidden');
   typeLetter();
 }
 
 function typeLetter() {
-  if (isSkipped) return;
-
-  if (typingIndex < config.letterText.length) {
-    letterText.textContent += config.letterText.charAt(typingIndex);
-    typingIndex++;
-
-    typingTimer = setTimeout(typeLetter, config.typingSpeed || 45);
+  const text = cfg.message || '';
+  if (idx <= text.length) {
+    $('typed').textContent = text.slice(0, idx++);
+    timer = setTimeout(typeLetter, Number(cfg.typeSpeed) || 32);
+  } else {
+    $('skip').classList.add('hidden');
+    $('next').classList.remove('hidden');
   }
 }
 
-skipBtn.addEventListener("click", () => {
-  isSkipped = true;
-  clearTimeout(typingTimer);
-  letterText.textContent = config.letterText;
+function skipTyping() {
+  clearTimeout(timer);
+  $('typed').textContent = cfg.message || '';
+  $('skip').classList.add('hidden');
+  $('next').classList.remove('hidden');
+}
+
+function goToGallery() {
+  $('paperModal').classList.add('hidden');
+  $('collage').classList.remove('hidden');
+  renderPhotos();
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+function isImage(src) {
+  return /\.(png|jpe?g|gif|webp|svg)$/i.test(String(src));
+}
+
+function photoHTML(item) {
+  const src = typeof item === 'string' ? item : item.src;
+  const caption = typeof item === 'string' ? 'Foto' : (item.caption || 'Foto');
+  return isImage(src) ? `<img src="${src}" alt="${caption}">` : src;
+}
+
+function renderPhotos() {
+  const photos = cfg.photos || [];
+  $('photoGrid').innerHTML = photos.map((p, i) => `
+    <div class="polaroid" style="--r:${[-4, 3, -2, 5, -5, 2][i % 6]}deg" onclick="showPhoto(${i})">
+      <div class="photo">${photoHTML(p)}</div>
+      <p class="caption">${typeof p === 'string' ? 'Foto' : (p.caption || 'Foto')}</p>
+    </div>
+  `).join('');
+}
+
+function showPhoto(index) {
+  const photos = cfg.photos || [];
+  if (!photos.length) return;
+  currentPhoto = (index + photos.length) % photos.length;
+  const p = photos[currentPhoto];
+  $('bigPhoto').innerHTML = photoHTML(p);
+  $('bigCap').textContent = typeof p === 'string' ? 'Foto' : (p.caption || 'Foto');
+  $('counter').textContent = `${currentPhoto + 1} / ${photos.length}`;
+  $('lightbox').classList.remove('hidden');
+}
+
+function createFlyingHearts() {
+  const heartsCfg = cfg.hearts || {};
+  if (heartsCfg.enabled === false) return;
+  const wrap = $('flyingHearts');
+  const symbols = heartsCfg.symbols || ['♡', '♥', '💕', '💗'];
+  const amount = Number(heartsCfg.amount) || 24;
+  wrap.innerHTML = '';
+  for (let i = 0; i < amount; i++) {
+    const h = document.createElement('span');
+    h.className = 'fly-heart';
+    h.textContent = symbols[i % symbols.length];
+    h.style.left = `${Math.random() * 100}%`;
+    h.style.setProperty('--s', `${14 + Math.random() * 22}px`);
+    h.style.setProperty('--d', `${7 + Math.random() * 9}s`);
+    h.style.setProperty('--delay', `${Math.random() * 8}s`);
+    h.style.setProperty('--x', `${-80 + Math.random() * 160}px`);
+    wrap.appendChild(h);
+  }
+}
+
+function burstHearts(amount = 12) {
+  const wrap = $('flyingHearts');
+  for (let i = 0; i < amount; i++) {
+    const h = document.createElement('span');
+    h.className = 'fly-heart';
+    h.textContent = '💖';
+    h.style.left = `${42 + Math.random() * 16}%`;
+    h.style.setProperty('--s', `${22 + Math.random() * 22}px`);
+    h.style.setProperty('--d', `${2 + Math.random() * 2}s`);
+    h.style.setProperty('--delay', '0s');
+    h.style.setProperty('--x', `${-130 + Math.random() * 260}px`);
+    wrap.appendChild(h);
+    setTimeout(() => h.remove(), 4500);
+  }
+}
+
+$('unlock').addEventListener('click', unlockPadlock);
+$('envelope').addEventListener('click', openEnvelope);
+$('envelope').addEventListener('keydown', (e) => { if (e.key === 'Enter') openEnvelope(); });
+$('skip').addEventListener('click', skipTyping);
+$('next').addEventListener('click', goToGallery);
+$('prevPhoto').addEventListener('click', () => showPhoto(currentPhoto - 1));
+$('nextPhoto').addEventListener('click', () => showPhoto(currentPhoto + 1));
+$('closeLightbox').addEventListener('click', () => $('lightbox').classList.add('hidden'));
+
+document.addEventListener('keydown', (e) => {
+  if (!$('lightbox').classList.contains('hidden')) {
+    if (e.key === 'ArrowLeft') showPhoto(currentPhoto - 1);
+    if (e.key === 'ArrowRight') showPhoto(currentPhoto + 1);
+    if (e.key === 'Escape') $('lightbox').classList.add('hidden');
+  }
 });
 
-function showPhoto() {
-  if (!config.photos || config.photos.length === 0) return;
-  slidePhoto.src = config.photos[currentPhoto];
-}
-
-function nextPhoto() {
-  currentPhoto++;
-
-  if (currentPhoto >= config.photos.length) {
-    currentPhoto = 0;
-  }
-
-  showPhoto();
-}
-
-function prevPhoto() {
-  currentPhoto--;
-
-  if (currentPhoto < 0) {
-    currentPhoto = config.photos.length - 1;
-  }
-
-  showPhoto();
-}
-
-nextBtn.addEventListener("click", nextPhoto);
-prevBtn.addEventListener("click", prevPhoto);
-
-fillPinScroll();
+initContent();
+renderDials();
