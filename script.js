@@ -60,7 +60,7 @@ function unlockPadlock() {
 
 function openEnvelope() {
   $('envelope').classList.add('open');
-  setTimeout(openPaper, 9950);
+  setTimeout(openPaper, 850);
 }
 
 function openPaper() {
