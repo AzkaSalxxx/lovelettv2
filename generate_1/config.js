@@ -1,7 +1,7 @@
 // EDIT SEMUA ISI WEB DARI SINI
 // Untuk foto: taruh file gambar di folder yang sama, lalu isi seperti "foto1.jpg".
 // Bisa juga pakai emoji seperti contoh bawaan.
-const CONFIG = {
+const CONFIG1 = {
   pin: "1912",
   brandName: "♡ Love Lock",
   badgeText: "♡ Love Lock",
