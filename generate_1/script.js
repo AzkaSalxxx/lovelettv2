@@ -4,7 +4,7 @@ let idx = 0;
 let timer;
 
 const $ = (id) => document.getElementById(id);
-const cfg = window.CONFIG || CONFIG;
+const cfg = window.CONFIG || CONFIG1;
 
 function setText(id, text) {
   const el = $(id);
