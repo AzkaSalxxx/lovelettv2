@@ -2,16 +2,16 @@
 // Untuk foto: taruh file gambar di folder yang sama, lalu isi seperti "foto1.jpg".
 // Bisa juga pakai emoji seperti contoh bawaan.
 const CONFIG = {
-  pin: "0001",
+  pin: "1912",
   brandName: "♡ Love Lock",
   badgeText: "♡ Love Lock",
-  mainTitle: "THE PIN IS : 0001",
+  mainTitle: "Tanggal Jadian Kita",
   wrongPinText: "PIN salah, coba lagi.",
   unlockedText: "Unlocked! Buka amplopnya.",
   envelopeTitle: "Tap the envelope",
 
-  recipient: "Kamu",
-  signature: "Azka",
+  recipient: "MyLove",
+  signature: "Sicantik",
   typeSpeed: 32,
   message: `Aku bikin halaman kecil ini untuk menyimpan rasa yang kadang susah diucapkan langsung.
 
