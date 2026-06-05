@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Lock</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-blobs"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+  <div id="flyingHearts" class="flying-hearts" aria-hidden="true"></div>
+
+  <nav><div id="brandName" class="brand">♡ Love Lock</div></nav>
+
+  <main class="wrap center">
+    <p id="badgeText" class="lock-badge">♡ Love Lock</p>
+    <h1 id="mainTitle" class="title">THE PIN IS : 0001</h1>
+    <p id="status" class="status">Atur dial lalu tekan Enter.</p>
+
+    <section id="lockStage" class="lock-stage">
+      <div id="padlock" class="padlock" aria-label="Gembok hati">
+        <div id="shackle" class="shackle"></div>
+        <div id="heartLock" class="heart-lock">
+          <span class="heart-core"></span>
+          <span class="shine"></span>
+          <span class="keyhole"></span>
+        </div>
+        <div class="inner">
+          <div class="dials" id="dials"></div>
+          <button id="unlock" class="primary enter">Enter</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="envelopeStage" class="hidden">
+      <p class="kicker">Unlocked</p>
+      <h2 id="envelopeTitle" class="title small-title">Tap the envelope</h2>
+      <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Buka amplop">
+        <div class="paper-peek"></div>
+        <div class="env-body"></div>
+        <div class="env-top"></div>
+      </div>
+    </section>
+
+    <section id="collage" class="collage hidden card">
+      <p class="kicker">Memories</p>
+      <h2 id="galleryTitle" class="title gallery-title">Photo Collage</h2>
+      <p id="galleryDesc">Klik foto, lalu geser pakai tombol kanan/kiri tanpa harus back.</p>
+      <div id="photoGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <div id="paperModal" class="paper-modal hidden">
+    <article class="paper">
+      <p class="date" id="date"></p>
+      <h2 id="letterGreeting">Dear Kamu,</h2>
+      <p id="typed" class="typed"></p>
+      <p>With love,</p>
+      <p id="signature" class="sig">Azka</p>
+      <div class="row">
+        <button id="skip" class="primary">Skip</button>
+        <button id="next" class="primary hidden">Next</button>
+      </div>
+    </article>
+  </div>
+
+  <div id="lightbox" class="lightbox hidden">
+    <div class="lightbox-card">
+      <div class="lightbox-top">
+        <span id="counter" class="counter">1 / 6</span>
+        <button id="closeLightbox" class="close">Close</button>
+      </div>
+      <div class="slide-wrap">
+        <button id="prevPhoto" class="nav-slide prev" aria-label="Foto sebelumnya">‹</button>
+        <div id="bigPhoto" class="big-photo"></div>
+        <button id="nextPhoto" class="nav-slide next" aria-label="Foto berikutnya">›</button>
+      </div>
+      <p id="bigCap" class="caption"></p>
+    </div>
+  </div>
+
+  <footer id="footerText">Made with love.</footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
