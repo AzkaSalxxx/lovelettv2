@@ -25,13 +25,13 @@ Loveyou ayang`,
   footerText: "Made with love.",
 
   photos: [
-    { src: "generate_1/photos/foto1.jpg", caption: "Memory " },
-    { src: "generate_1/photos/foto2.jpg", caption: "Sweet " },
-    { src: "generate_1/photos/foto3.jpg", caption: "Love " },
-    { src: "generate_1/photos/foto4.jpg", caption: "Smile " },
-    { src: "generate_1/photos/foto5.jpg", caption: "Dream " },
-    { src: "generate_1/photos/foto6.jpg", caption: "Forever " },
-    { src: "generate_1/photos/foto7.jpg", caption: "Us " },
+    { src: "generate_1/photos/foto1.jpg", caption: "💗 " },
+    { src: "generate_1/photos/foto2.jpg", caption: "💗 " },
+    { src: "generate_1/photos/foto3.jpg", caption: "💗 " },
+    { src: "generate_1/photos/foto4.jpg", caption: "💗 " },
+    { src: "generate_1/photos/foto5.jpg", caption: "💗 " },
+    { src: "generate_1/photos/foto6.jpg", caption: "💗 " },
+    { src: "generate_1/photos/foto7.jpg", caption: "💗 " },
     { src: "generate_1/photos/foto8.jpg", caption: "Happy " }
   ],
 
