@@ -21,7 +21,7 @@ Jangan lupa, kamu selalu punya tempat spesial di hatiku .
 Loveyou ayang`,
 
   galleryTitle: "Photo Collage",
-  galleryDesc: "Klik foto, lalu geser pakai tombol kanan/kiri tanpa harus back.",
+  galleryDesc: "💗",
   footerText: "Made with love.",
 
   photos: [
