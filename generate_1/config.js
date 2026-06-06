@@ -24,14 +24,14 @@ Jangan lupa, kamu selalu punya tempat spesial di cerita ini.`,
   footerText: "Made with love.",
 
   photos: [
-    { src: "generate/photos/foto1.jpg", caption: "Memory 01" },
-    { src: "generate/photos/foto2.jpg", caption: "Sweet 02" },
-    { src: "generate/photos/foto3.jpg", caption: "Love 03" },
-    { src: "generate/photos/foto4.jpg", caption: "Smile 04" },
-    { src: "generate/photos/foto5.jpg", caption: "Dream 05" },
-    { src: "generate/photos/foto6.jpg", caption: "Forever 06" },
-    { src: "generate/photos/foto7.jpg", caption: "Us 07" },
-    { src: "generate/photos/foto8.jpg", caption: "Happy 08" }
+    { src: "generate_1/photos/foto1.jpg", caption: "Memory 01" },
+    { src: "generate_1/photos/foto2.jpg", caption: "Sweet 02" },
+    { src: "generate_1/photos/foto3.jpg", caption: "Love 03" },
+    { src: "generate_1/photos/foto4.jpg", caption: "Smile 04" },
+    { src: "generate_1/photos/foto5.jpg", caption: "Dream 05" },
+    { src: "generate_1/photos/foto6.jpg", caption: "Forever 06" },
+    { src: "generate_1/photos/foto7.jpg", caption: "Us 07" },
+    { src: "generate_1/photos/foto8.jpg", caption: "Happy 08" }
   ],
 
   hearts: {
