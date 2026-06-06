@@ -32,7 +32,7 @@ Loveyou ayang`,
     { src: "generate_1/photos/foto5.jpg", caption: "💗 " },
     { src: "generate_1/photos/foto6.jpg", caption: "💗 " },
     { src: "generate_1/photos/foto7.jpg", caption: "💗 " },
-    { src: "generate_1/photos/foto8.jpg", caption: "Happy " }
+    { src: "generate_1/photos/foto8.jpg", caption: "💗 " }
   ],
 
   hearts: {
